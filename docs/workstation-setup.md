@@ -1,4 +1,4 @@
-brew install hashicorp/tap/terraformbrew install hashicorp/tap/terraform# Workstation setup
+# Workstation setup
 
 Reproducible local toolchain for Northtell. Versions are the ones the project is tested with.
 
