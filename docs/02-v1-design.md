@@ -226,20 +226,14 @@ The README is the front door. It opens with a two-line pitch, then a 3-minute de
 - Repository and Azure security settings are changed only by the maintainer, and each change is recorded in `docs/`.
 - Architecture choices are recorded as ADRs.
 
-**Repository controls, checked with `gh api` on 2026-11-03**
+**Repository controls in place**
+- Ruleset on `main`: pull request required, signed commits, squash merges only, linear history, no deletions, no force-pushes, no bypass.
+- Secret scanning with push protection.
+- Dependabot alerts and security updates.
+- Read-only default `GITHUB_TOKEN`.
+- GitHub Actions cannot approve pull requests.
 
-| Control | State |
-|---|---|
-| Ruleset `main-protection`: no deletion, no force-push, signed commits, PR required, squash only, linear history, no bypass | On |
-| Secret scanning and push protection | On |
-| Dependabot alerts and security updates | On |
-| Default `GITHUB_TOKEN` permission | Read-only |
-| GitHub Actions allowed to approve PRs | No |
-| Workflows and `.github/` directory | None yet |
-| Allowed actions | All; to be narrowed |
-| Require SHA pinning for actions | Off; to be turned on |
-| Secret scanning for non-provider patterns, validity checks | Off |
-| Required status checks, CODEOWNERS, `dependabot.yml` version updates | Not yet |
+`docs/03-repository-security.md` lists each control once it is enforced and verified.
 
 **Setup order**
 1. Narrow allowed actions and turn on SHA pinning.
