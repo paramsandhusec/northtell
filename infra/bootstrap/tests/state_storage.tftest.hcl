@@ -1,7 +1,16 @@
 # Unit test for the Terraform state storage. It runs a plan against a mock
 # provider, so it needs no Azure login and creates nothing.
 
-mock_provider "azurerm" {}
+mock_provider "azurerm" {
+  # azurerm 5.14 checks that principal_id is a UUID, but the mock makes up
+  # random strings. Give the signed-in identity a real-shaped object ID.
+  mock_data "azurerm_client_config" {
+    defaults = {
+      object_id = "11111111-1111-1111-1111-111111111111"
+      tenant_id = "22222222-2222-2222-2222-222222222222"
+    }
+  }
+}
 
 variables {
   storage_account_name = "sttestnorthtell01"
