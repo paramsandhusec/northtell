@@ -47,3 +47,6 @@ terraform.rc
 # planout
 .DS_Store
 .claude/settings.local.json
+
+# Pester -CI writes this report; it holds the local user and machine name
+testResults.xml

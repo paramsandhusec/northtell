@@ -60,6 +60,14 @@ jobs:
             terraform -chdir="$dir" test
             echo "::endgroup::"
           done
+      - name: Runbook tests (Pester)
+        shell: pwsh
+        run: |
+          if (Test-Path infra/platform/runbooks) {
+            Install-Module Pester -RequiredVersion 6.2.0 -Scope CurrentUser -Force
+            Import-Module Pester -RequiredVersion 6.2.0
+            Invoke-Pester infra/platform/runbooks -CI
+          }
       - name: Checkov
         run: |
           if find infra -name '*.tf' 2>/dev/null | grep -q .; then
