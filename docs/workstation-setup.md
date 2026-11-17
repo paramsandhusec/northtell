@@ -17,9 +17,11 @@ Reproducible local toolchain for Northtell. Versions are the ones the project is
 | pre-commit | 4.7.0 | Runs gitleaks and `terraform fmt` before every commit | `pipx install pre-commit`, then `pre-commit install` in the repo |
 | gitleaks | 8.30.1 | Secret scanning (pinned in `.pre-commit-config.yaml`) | Installed by pre-commit |
 | PowerShell | 7.6.9 | Runs the kill-switch runbook tests (Pester) | `brew install powershell` |
+| Pester | 6.2.0 (same version CI installs) | Kill-switch runbook tests | `pwsh -c "Install-Module Pester -RequiredVersion 6.2.0 -Scope CurrentUser"` |
 
 ## Verify
     az version; terraform version; tflint --version; checkov --version; sigma version; pre-commit --version; pwsh --version
+    pwsh -c "(Get-Module -ListAvailable Pester | Sort-Object Version -Descending | Select-Object -First 1).Version"
 
 ## Notes
 - After any billing or subscription change, re-authenticate the CLI (see INC-002 in [incidents](incidents.md)).
